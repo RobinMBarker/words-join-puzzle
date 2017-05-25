@@ -21,8 +21,8 @@ module Words.Join.Opts where
 
     usageString :: String -> String -> Int -> String
     usageString prog argStr count = 
-	(intercalate " " (["Usage:\n", prog, "[OPTION...]"] ++ argStrs)) 
-        ++ "\n\tEnviroment variable: DICTWORDS sets dict file"
+        (intercalate " " (["Usage:\n", prog, "[OPTION]"] ++ argStrs)) 
+                ++ "\n  Enviroment variable: DICTWORDS sets dict FILE"
             where   argStrs :: [String]
                     argStrs = zipWith (++) 
                                     (repeat argStr) 
