@@ -3,6 +3,7 @@ module Words.Join.Opts where
     import System.Console.GetOpt
     import Data.Char (isAscii, isLower, isDigit)
     import Words.Join.Dict (getDictFile)
+    import Data.List (intercalate)
 
     data OptData = Dictionary FilePath deriving Show;
 
@@ -16,7 +17,16 @@ module Words.Join.Opts where
             (o,[s],[])  -> return (readOpts o,s)
             (_,_,errs)  ->
                 ioError (userError (concat errs ++ usageInfo header options))
-      where header = "Usage:\n "++prog++" [OPTION...] word"
+      where header = usageString prog "word" 1
+
+    usageString :: String -> String -> Int -> String
+    usageString prog argStr count = 
+	(intercalate " " (["Usage:\n", prog, "[OPTION...]"] ++ argStrs)) 
+        ++ "\n\tEnviroment variable: DICTWORDS sets dict file"
+            where   argStrs :: [String]
+                    argStrs = zipWith (++) 
+                                    (repeat argStr) 
+                                    (take count [replicate n '\''|n <-[0..]])
 
     processOpts2 :: String -> [String] -> IO (Maybe FilePath, String, String)
     processOpts2 prog argv =
@@ -24,7 +34,7 @@ module Words.Join.Opts where
             (o,[s,t],[])-> return (readOpts o,s,t)
             (_,_,errs)  ->
                 ioError (userError (concat errs ++ usageInfo header options))
-      where header = "Usage:\n "++prog++" [OPTION...] word word'"
+      where header = usageString prog "word" 2
 
     processOptsL :: String -> [String] -> IO (Maybe FilePath, Int)
     processOptsL prog argv =
@@ -32,7 +42,7 @@ module Words.Join.Opts where
             (o,[n],[]) | all isDigit n -> return (readOpts o, read n)
             (_,_,errs) ->
                 ioError (userError (concat errs ++ usageInfo header options))
-      where header = "Usage:\n "++prog++" [OPTION...] number"
+      where header = usageString prog "number" 1
 
     readOpts :: [OptData] -> Maybe FilePath
     readOpts = foldl (\Nothing (Dictionary p) -> Just p) Nothing

@@ -13,13 +13,13 @@ groups = groups' []
 
         regroup :: Joined a => a -> [[a]] -> ([[a]],[[a]])
         regroup x = split (any (joined x))
-	
+        
         split :: (a -> Bool) -> [a] -> ([a],[a])
         split _ [] = ([],[])
         split p (x:xs)  | p x       = (x:ys,zs)
                         | otherwise = (ys,x:zs) 
                                 where (ys,zs) = split p xs 
-	
+        
 sortWith :: Ord b => (a -> b) -> [a] -> [a]
 sortWith f = sortBy (\x y -> compare (f x) (f y))
 

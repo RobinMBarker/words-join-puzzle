@@ -11,7 +11,7 @@ shell (xs, z:zs) =
 
 layers :: Joined a => a -> [a] -> [[a]]
 layers x zs = takeWhile (not.null) (map fst (iterate shell ([x], zs)))
-	
+        
 nearwords :: (Eq a, Show a) => [a] -> [[a]] -> (String, [[[a]]])
 nearwords x zs = 
         let l = length x in 

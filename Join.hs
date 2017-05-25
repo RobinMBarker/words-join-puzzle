@@ -18,7 +18,7 @@ joinwords x y zs =
 
   where joinwords' :: Joined a => [[a]] -> [[a]] -> [a] -> [[a]]
         joinwords' xss yss zs =
-                if null xss || null yss then [] -- ran out of neighbours	
+                if null xss || null yss then [] -- ran out of neighbours        
                 else case [ (reverse xs)++ys |  xs@(x:_) <- xss, 
                                                 ys@(y:_) <- yss, 
                                                 joined x y ] of
@@ -31,7 +31,7 @@ joinwords x y zs =
                     case searchwords xss yss zs of
                         Left (xss', yss', zs')  -> joinwords' xss' yss' zs'
                         Right ans               -> ans
-	
+        
 searchwords :: Joined a => [[a]] -> [[a]] -> [a] 
                                 -> Either ([[a]], [[a]], [a]) [[a]]
 searchwords xss yss = searchwords' xss yss ([], [], [])
@@ -59,7 +59,7 @@ searchwords xss yss = searchwords' xss yss ([], [], [])
 
         joinedup :: [[a]] -> a -> [[a]] -> [[a]]
         joinedup xss z yss = [ (reverse xs)++(z:ys)| xs <- xss, ys <- yss ]
-	
+        
 main :: IO()
 main = do
         args <- getArgs
