@@ -2,3 +2,6 @@
 *.o
 Setup
 dist/
+dist-*/
+cabal.project.local
+*~
