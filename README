@@ -1,0 +1,17 @@
+words-join 0.1.0.1
+
+Solving Dodgson word ladder problems
+
+Executables: wordjoin, wordnear, wordgroup, ordered
+
+The word* executables take a dictionary parameter,
+which defaults to the value of the DICTWORDS varibale.
+
+This can be set using the user profile settings or 
+
+    SET DICTWORDS=C:\Users\Robin\Documents\12dict\5desk.txt
+
+The 12dicts v6 documentation, suggests:
+
+    C:\Users\robin\Documents\12dicts-6.0.2\International\3of6game.txt
+
