@@ -21,6 +21,3 @@ module Words.Join.Dict where
     getDictFile (Just d) = return d
     getDictFile Nothing = readEnvVar dictEnvVar
                         >>= return . (fromMaybe defaultDict) 
-
--- SET DICTWORDS=C:\Users\Robin\Documents\12dict\5desk.txt
-
