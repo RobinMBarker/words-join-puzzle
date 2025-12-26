@@ -15,3 +15,6 @@ The 12dicts v6 documentation, suggests:
 
     C:\Users\robin\Documents\12dicts-6.0.2\International\3of6game.txt
 
+Powershell
+
+    $Env:DICTWORDS = 'C:/12dicts-6.0.2/International/3of6all.txt'
